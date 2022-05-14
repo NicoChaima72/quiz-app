@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "name": "Educación financiera 1",
+    "color": "indigo",
+    "resume": "<p>La educación financiera es un factor esencial para que tenga éxito con su dinero, pero ¿cuánto conocimiento relevante tiene? ¿Es suficiente para lidiar con los problemas que inevitablemente surgirán y tiene una comprensión clara de las decisiones clave sobre dinero y crédito que son necesarias para alcanzar sus objetivos?</p><p className='block mt-7 text-xs'>Sin una buena base de comprensión de las finanzas personales, puede ser casi imposible mantener la estabilidad y avanzar hacia sus ambiciones. Con eso en mente, FinancePro creó esta sencilla prueba o test de educación financiera de 20 preguntas diseñada para ayudarle a medir su nivel de comprensión. Puede ayudarle a identificar brechas de conocimiento, para que pueda buscar recursos para cerrarlas</p>",
+    "questions": [
+      {
+        "question": "¿Cuánto dinero debería colocar en sus ahorros mensualmente?",
+        "answers": [
+          { "text": "2% de su sueldo", "isCorrect": true },
+          { "text": "10% de su sueldo", "isCorrect": false },
+          {
+            "text": "Todo el dinero que le sobre a final de mes",
+            "isCorrect": false
+          },
+          {
+            "text": "Cualquier billete de baja denominación que encuentre en su sofá, piso o en el carro",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "question": "¿Cuáles son los 5 factores que influyen en su puntaje de crédito?",
+        "answers": [
+          {
+            "text": "Monto de la deuda, la tasa de interés más alta, número de tarjetas de crédito, morosidad, excedentes",
+            "isCorrect": true
+          },
+          {
+            "text": "Ingreso, número de tarjetas de crédito, historial de pago, penalidades y ahorros",
+            "isCorrect": false
+          },
+          {
+            "text": "Linda sonrisa, actitud ganadora, prometer ser más responsable, el encantamiento correcto para un puntaje de crédito, ojo de tritón",
+            "isCorrect": false
+          },
+          {
+            "text": "Historial de pago, índice de utilización, aplicaciones de crédito nuevas, duración del uso del crédito, tipos de crédito en su historial",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "question": "¿Cuál es el monto máximo de su ingreso que debería destinar al pago de sus tarjetas de crédito?",
+        "answers": [
+          {
+            "text": "Ninguno. ¿Para qué pagar cuando puedes esquivar a los coleccionistas de deudas?",
+            "isCorrect": true
+          },
+          {
+            "text": "Todo lo que se necesita para pagar sus deudas por completo cada mes",
+            "isCorrect": false
+          },
+          {
+            "text": "No más del 10% del dinero que lleva a casa",
+            "isCorrect": false
+          },
+          {
+            "text": "No más del 30% de su ingreso neto",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "question": "¿Cuál es la máxima relación deuda-ingreso que debería tener para mantener una estabilidad financiera?",
+        "answers": [
+          { "text": "No más de 27%", "isCorrect": true },
+          { "text": "No más de 41%", "isCorrect": false },
+          {
+            "text": "No más de 50%",
+            "isCorrect": false
+          },
+          {
+            "text": "Mientras tenga más dinero que deudas, ¡estará muy bien!",
+            "isCorrect": false
+          }
+        ]
+      },
+      {
+        "question": "¿Cada cuánto tiempo puede obtener un reporte de crédito gratis?",
+        "answers": [
+          {
+            "text": "Depende de cuántos sitios de puntaje de crédito encuentre y que sean gratis",
+            "isCorrect": true
+          },
+          { "text": "Una vez cada seis meses", "isCorrect": false },
+          {
+            "text": "Una vez al año",
+            "isCorrect": false
+          },
+          {
+            "text": "Nunca, siempre debe pagar para obtener el reporte de crédito correcto",
+            "isCorrect": false
+          }
+        ]
+      }
+    ]
+  },
+  { "id": 2, "name": "Educación financiera 2", "color": "gray" },
+  { "id": 3, "name": "Economía basica 1", "color": "orange" },
+  { "id": 4, "name": "Economía basica 2", "color": "blue" },
+  { "id": 5, "name": "Macroeconomía", "color": "rose" },
+  { "id": 6, "name": "Microeconomía", "color": "yellow" }
+]
