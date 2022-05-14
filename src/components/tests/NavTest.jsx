@@ -3,7 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { useNavigate } from "react-router-dom";
 
-const NavTest = ({ points, timeReminder }) => {
+const NavTest = ({ points, timeLeft, totalTime }) => {
   const navigate = useNavigate();
 
   const handleExitTest = () => {
@@ -18,9 +18,9 @@ const NavTest = ({ points, timeReminder }) => {
       </div>
       <div
         className={`${
-          Math.floor(timeReminder) > 12
+          timeLeft > totalTime / 2
             ? "border-green-500"
-            : Math.floor(timeReminder) > 6
+            : timeLeft > totalTime / 4
             ? "border-yellow-500"
             : "border-red-500"
         } text-4xl border-2 rounded-full w-20 h-20 relative mx-auto`}
@@ -29,7 +29,7 @@ const NavTest = ({ points, timeReminder }) => {
           className="absolute top-[50%] left-[50%] p-0 m-0"
           style={{ transform: "translate(-50%, -50%)" }}
         >
-          {Math.floor(timeReminder)}
+          {Math.floor(timeLeft / 1000)}
         </div>
       </div>
       <CloseIcon

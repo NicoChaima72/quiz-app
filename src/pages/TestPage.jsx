@@ -3,56 +3,61 @@ import AnswersTest from "../components/tests/AnswersTest";
 import NavTest from "../components/tests/NavTest";
 import QuestionTest from "../components/tests/QuestionTest";
 import StatsTest from "../components/tests/StatsTest";
+import useCountDown from "../hooks/useCountdown";
 import { getCourseById } from "../services/CoursesService";
 
 const TestPage = () => {
-  let interval = null;
   const course = getCourseById(1);
-  const totalTime = 20;
+  const totalTime = 20900;
+  const [timeLeft, { start: startCountdown, pause: pauseCountdown }] =
+    useCountDown(totalTime, 100);
   const [points, setPoints] = useState(0);
   const [actualAnswer, setActualAnswer] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
-  const [timeReminder, setTimeReminder] = useState(totalTime);
   const [areDisabled, setAreDisabled] = useState(false);
   const [answerShown, setanswerShown] = useState(false);
   const [isTimeOut, setIsTimeOut] = useState(false);
+  const [correctQuestions, setCorrectQuestions] = useState(0);
 
   useEffect(() => {
-    interval = setInterval(() => {
-      if (Math.floor(timeReminder * 10) > 0)
-        setTimeReminder((prev) => prev - 1);
-      if (Math.floor(timeReminder * 10) <= 0) {
-        setAreDisabled(true);
-        setIsTimeOut(true);
-      }
-    }, 1000);
+    startCountdown();
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [timeReminder]);
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      setAreDisabled(true);
+      setIsTimeOut(true);
+    }
+  }, [timeLeft]);
 
-  const resetTimeReminder = () => {
-    setTimeReminder(totalTime);
-  };
+  const resetCountdown = React.useCallback(() => {
+    startCountdown(totalTime);
+  }, []);
 
   const goNextQuestion = () => {
+    window.scrollTo(0, 0);
     setAreDisabled(false);
     if (actualAnswer === course.questions.length - 1) setIsFinished(true);
-    else setActualAnswer(actualAnswer + 1);
-    resetTimeReminder();
-    setIsTimeOut(false);
-    window.scrollTo(0, 0);
+    else {
+      setActualAnswer(actualAnswer + 1);
+      resetCountdown();
+      setIsTimeOut(false);
+    }
   };
 
   const handleAnswerSubmit = (isCorrect, e) => {
+    pauseCountdown();
+    setAreDisabled(true);
+
     e.target.classList.add(
       isCorrect ? "bg-green-700" : "bg-red-700",
       isCorrect ? "hover:bg-green-700" : "hover:bg-red-700"
     );
-
-    clearInterval(interval);
-    setAreDisabled(true);
-    if (isCorrect) setPoints(points + 999);
-
+    if (isCorrect) {
+      // TODO: CALCULAR PUNTAJE
+      setPoints(points + 999);
+      setCorrectQuestions(correctQuestions + 1);
+    }
     setTimeout(() => {
       goNextQuestion();
     }, 1500);
@@ -62,7 +67,11 @@ const TestPage = () => {
 
   return (
     <div className="">
-      <NavTest points={points} timeReminder={timeReminder}></NavTest>
+      <NavTest
+        points={points}
+        timeLeft={timeLeft}
+        totalTime={totalTime}
+      ></NavTest>
       <QuestionTest
         actualAnswer={actualAnswer}
         question={course.questions[actualAnswer].question}
@@ -72,14 +81,6 @@ const TestPage = () => {
         handleAnswerSubmit={handleAnswerSubmit}
         areDisabled={areDisabled}
         isTimeOut={isTimeOut}
-        setIsTimeOut={setIsTimeOut}
-        resetTimeReminder={resetTimeReminder}
-        setAreDisabled={setAreDisabled}
-        setActualAnswer={setActualAnswer}
-        totalTime
-        actualAnswer={actualAnswer}
-        setIsFinished={setIsFinished}
-        questionsLength={course.questions.length}
         goNextQuestion={goNextQuestion}
       ></AnswersTest>
     </div>
