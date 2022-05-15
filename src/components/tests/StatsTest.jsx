@@ -4,7 +4,7 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useNavigate } from "react-router-dom";
 
-const StatsTest = ({ points }) => {
+const StatsTest = ({ points, countCorrectQuestions, questions }) => {
   const navigate = useNavigate();
 
   return (
@@ -12,7 +12,7 @@ const StatsTest = ({ points }) => {
       <div className="flex justify-end pt-6">
         <button
           className="rounded py-2 pl-5 pr-3 shadow-lg bg-gray-800 hover:bg-gray-700 flex items-center justify-between space-x-2"
-          onClick={() => navigate("/course/1")}
+          onClick={() => navigate(-1, { replace: true })}
         >
           <p>Continuar</p>
           <ArrowForwardIosIcon
@@ -30,12 +30,12 @@ const StatsTest = ({ points }) => {
               <div className="">
                 <h4 className="text-lg">Tú</h4>
                 <p className="text-xs text-gray-400 leading-none">
-                  Correctas: 4/5
+                  {`Correctas: ${countCorrectQuestions}/${questions.length}`}
                 </p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <p className="text-lg text-gray-400">4300 ptos</p>
+              <p className="text-lg text-gray-400">{points} ptos</p>
               {/* <EmojiEventsIcon sx={{ width: 35, height: 35 }}></EmojiEventsIcon> */}
               <div
                 className={`text-xl border-2 rounded-full w-10 h-10 relative mx-auto`}

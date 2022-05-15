@@ -7,7 +7,8 @@ const NavTest = ({ points, timeLeft, totalTime }) => {
   const navigate = useNavigate();
 
   const handleExitTest = () => {
-    if (confirm("Abandonarás el test, ¿estás seguro?")) navigate("/course/1");
+    if (confirm("Abandonarás el test, ¿estás seguro?"))
+      navigate(-1, { replace: true });
   };
 
   return (

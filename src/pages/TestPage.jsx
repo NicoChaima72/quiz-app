@@ -5,6 +5,7 @@ import QuestionTest from "../components/tests/QuestionTest";
 import StatsTest from "../components/tests/StatsTest";
 import useCountDown from "../hooks/useCountdown";
 import { getCourseById } from "../services/CoursesService";
+import { calculatePoints } from "../utils/utils";
 
 const TestPage = () => {
   const course = getCourseById(1);
@@ -54,8 +55,7 @@ const TestPage = () => {
       isCorrect ? "hover:bg-green-700" : "hover:bg-red-700"
     );
     if (isCorrect) {
-      // TODO: CALCULAR PUNTAJE
-      setPoints(points + 999);
+      setPoints(points + calculatePoints(500, 1000, totalTime, timeLeft, 3000));
       setCorrectQuestions(correctQuestions + 1);
     }
     setTimeout(() => {
@@ -63,7 +63,14 @@ const TestPage = () => {
     }, 1500);
   };
 
-  if (isFinished) return <StatsTest points={points}></StatsTest>;
+  if (isFinished)
+    return (
+      <StatsTest
+        points={points}
+        countCorrectQuestions={correctQuestions}
+        questions={course.questions}
+      ></StatsTest>
+    );
 
   return (
     <div className="">
