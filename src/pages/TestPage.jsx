@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AnswersTest from "../components/tests/AnswersTest";
 import NavTest from "../components/tests/NavTest";
 import QuestionTest from "../components/tests/QuestionTest";
@@ -10,9 +11,8 @@ import { getCourseById } from "../services/CoursesService";
 import { calculatePoints } from "../utils/utils";
 
 const TestPage = () => {
-  window.onbeforeunload = function () {
-    return "Are you sure that you want to leave this page?";
-  };
+  const navigate = useNavigate();
+
   const course = getCourseById(1);
   const totalTime = 20900;
   const [timeLeft, { start: startCountdown, pause: pauseCountdown }] =
@@ -25,6 +25,18 @@ const TestPage = () => {
   const [answerShown, setanswerShown] = useState(false);
   const [isTimeOut, setIsTimeOut] = useState(false);
   const [correctQuestions, setCorrectQuestions] = useState(0);
+
+  useEffect(() => {
+    const alertUser = (e) => {
+      e.preventDefault();
+      e.returnValue = "";
+    };
+    window.addEventListener("beforeunload", alertUser);
+
+    return () => {
+      window.removeEventListener("beforeunload", alertUser);
+    };
+  }, []);
 
   useEffect(() => {
     if (!showPresentation) startCountdown();
