@@ -13,7 +13,7 @@ const NavTest = ({ points, timeLeft, totalTime }) => {
 
   return (
     <div className="grid items-start grid-cols-3 py-4 pt-6">
-      <div className="flex items-center space-x-1 mt-2">
+      <div className="flex items-center space-x-1 pt-2">
         <EmojiEventsIcon></EmojiEventsIcon>
         <p>{points}</p>
       </div>

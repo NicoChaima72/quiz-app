@@ -1,17 +1,23 @@
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import AnswersTest from "../components/tests/AnswersTest";
 import NavTest from "../components/tests/NavTest";
 import QuestionTest from "../components/tests/QuestionTest";
+import ShowPresentationTest from "../components/tests/ShowPresentationTest";
 import StatsTest from "../components/tests/StatsTest";
 import useCountDown from "../hooks/useCountdown";
 import { getCourseById } from "../services/CoursesService";
 import { calculatePoints } from "../utils/utils";
 
 const TestPage = () => {
+  window.onbeforeunload = function () {
+    return "Are you sure that you want to leave this page?";
+  };
   const course = getCourseById(1);
   const totalTime = 20900;
   const [timeLeft, { start: startCountdown, pause: pauseCountdown }] =
     useCountDown(totalTime, 100);
+  const [showPresentation, setShowPresentation] = useState(true);
   const [points, setPoints] = useState(0);
   const [actualAnswer, setActualAnswer] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
@@ -21,8 +27,8 @@ const TestPage = () => {
   const [correctQuestions, setCorrectQuestions] = useState(0);
 
   useEffect(() => {
-    startCountdown();
-  }, []);
+    if (!showPresentation) startCountdown();
+  }, [showPresentation]);
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -72,8 +78,21 @@ const TestPage = () => {
       ></StatsTest>
     );
 
+  if (showPresentation)
+    return (
+      <ShowPresentationTest
+        setShowPresentation={setShowPresentation}
+      ></ShowPresentationTest>
+    );
+
   return (
-    <div className="">
+    <motion.div
+      className="bg-[#0F172A] min-h-screen w-full text-white container mx-auto relative"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ type: "spring", duration: 0.2 }}
+    >
       <NavTest
         points={points}
         timeLeft={timeLeft}
@@ -90,7 +109,7 @@ const TestPage = () => {
         isTimeOut={isTimeOut}
         goNextQuestion={goNextQuestion}
       ></AnswersTest>
-    </div>
+    </motion.div>
   );
 };
 

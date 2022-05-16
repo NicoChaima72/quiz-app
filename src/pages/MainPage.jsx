@@ -1,4 +1,5 @@
 import { Skeleton } from "@mui/material";
+import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
 import { getCourses } from "../services/CoursesService";
@@ -7,7 +8,7 @@ const MainPage = () => {
   const courses = getCourses();
 
   return (
-    <div className="">
+    <div>
       <h2 className="text-2xl">Bienvenido, Nicolas</h2>
       <section className="mt-6">
         <h3 className="text-gray-400 text-sm">Mis cursos</h3>

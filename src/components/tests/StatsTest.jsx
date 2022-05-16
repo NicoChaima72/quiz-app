@@ -9,7 +9,7 @@ const StatsTest = ({ points, countCorrectQuestions, questions }) => {
 
   return (
     <>
-      <div className="flex justify-end pt-6">
+      <div className="flex justify-end pt-6 container">
         <button
           className="rounded py-2 pl-5 pr-3 shadow-lg bg-gray-800 hover:bg-gray-700 flex items-center justify-between space-x-2"
           onClick={() => navigate(-1, { replace: true })}
@@ -60,7 +60,7 @@ const StatsTest = ({ points, countCorrectQuestions, questions }) => {
                 <div className="flex space-x-3">
                   <Avatar sx={{ width: 40, height: 40 }}></Avatar>
                   <div className="">
-                    <h4 className="text">Nicolas Chaima</h4>
+                    <h4 className="text">Diana Martinez</h4>
                     <p className="text-xs text-gray-400 leading-none">
                       4350 puntos
                     </p>
@@ -91,7 +91,7 @@ const StatsTest = ({ points, countCorrectQuestions, questions }) => {
                 <div className="flex space-x-3">
                   <Avatar sx={{ width: 40, height: 40 }}></Avatar>
                   <div className="">
-                    <h4 className="text">Nicolas Chaima</h4>
+                    <h4 className="text">Diana Martinez</h4>
                     <p className="text-xs text-gray-400 leading-none">
                       4350 puntos
                     </p>
